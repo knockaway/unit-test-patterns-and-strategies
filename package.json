@@ -1,0 +1,22 @@
+{
+  "license": "MIT",
+  "scripts": {
+    "lint": "standard | snazzy",
+    "test": "tap --no-cov",
+    "test:cov": "tap",
+    "test:cov:html": "tap --coverage-report=html",
+    "test:watch": "tap -n -w --no-coverage-report"
+  },
+  "devDependencies": {
+    "mock-knex": "^0.4.10",
+    "mock-require": "^3.0.3",
+    "nock": "^13.1.0",
+    "snazzy": "^9.0.0",
+    "standard": "^16.0.3",
+    "tap": "^15.0.9"
+  },
+  "dependencies": {
+    "knex": "^0.95.6",
+    "mysql2": "^2.2.5"
+  }
+}
