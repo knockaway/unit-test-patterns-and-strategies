@@ -4,7 +4,7 @@ The puprose of this repository is to provide instruction on some common
 unit test patterns and strategies. Within the [lessons](./lessons) directory
 there are several subdirectories. The lessons are primarily written according to
 test patterns and strategies usable with the [`tap`](https://node-tap.org)
-testing framework within a [back end][backend] context . However, the majority
+testing framework within a [back end][backend] context. However, the majority
 of concepts should be applicable to any testing framework.
 
 Each lesson should have a short `Readme.md` that introduces the lesson. These
