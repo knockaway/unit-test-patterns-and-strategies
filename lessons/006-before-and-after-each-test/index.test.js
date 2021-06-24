@@ -10,7 +10,7 @@ const getData = require('./index')
 // the fact that `knex` requires a database connection in order to function,
 // combined with the fact that `mock-knex` utilizes a singleton within its
 // internals. This pairing means we need to create a new database connection,
-// and mock that connection, before test.
+// and mock that connection, before testing.
 //
 // Additionally, the `tap.beforeEach` function provides access to the test
 // object, `t`. Through this object we have access to an object that is scoped

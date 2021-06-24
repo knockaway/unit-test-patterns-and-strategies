@@ -43,7 +43,7 @@ tap.test('using t.throws for thrown errors', async t => {
 // This test shows how to test for promise rejections with a standard
 // promise chain. Notice that we used a plain function for the test and
 // we return the result of the promise chain. Recall from lesson 001 that
-// tap recognizes functions that returns promises and relies on the
+// tap recognizes functions that return promises and relies on the
 // resolve and reject states to determine test success or failure.
 tap.test('using a promise chain for rejections', t => {
   // Action: try removing the `return` statement to see what will happen.

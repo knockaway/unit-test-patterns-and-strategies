@@ -4,7 +4,7 @@ const tap = require('tap')
 const finishesLater = require('./index')
 
 // This test shows how we can test functions that require callbacks. Notice
-// that we pass a plain function, instead of asynchronous function like we did
+// that we pass a plain function, instead of an asynchronous function like we did
 // in lesson 001, to `tap.test`. This tells tap to expect either a known plan
 // or an explicit "end" to the test. In this case, we are using an explicit
 // end.
