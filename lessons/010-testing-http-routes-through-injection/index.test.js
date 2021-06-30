@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
-const tap = require('tap')
-const server = require('./index')
+const tap = require('tap');
+const server = require('./index');
 
 // This test shows how we can use Fastify's included testing feature, `.inject`,
 // to test the route defined by the server.
@@ -10,9 +10,9 @@ tap.test('responds with success', async t => {
   // we do not actually start the server. Nor do we need to stop it once the
   // test is complete. Also, we don't need any extra tools to issue the
   // request.
-  const response = await server.inject({ path: '/', method: 'GET' })
-  t.strictSame(response.json(), { hello: 'world' })
-})
+  const response = await server.inject({ path: '/', method: 'GET' });
+  t.strictSame(response.json(), { hello: 'world' });
+});
 
 // This test shows that the `.inject` method goes through the full server
 // request lifecycle just as if we had started the server and issued a "real"
@@ -27,10 +27,10 @@ tap.test('post route rejects for bad payload', async t => {
     path: '/foo',
     method: 'POST',
     payload: { foo: { bar: 'bar' } }
-  })
-  t.equal(response.statusCode, 400)
-  t.match(response.json(), { message: 'body.foo should be string' })
-})
+  });
+  t.equal(response.statusCode, 400);
+  t.match(response.json(), { message: 'body.foo should be string' });
+});
 
 // This test shows that we can pass validation and get a response from our
 // defined handler.
@@ -39,7 +39,7 @@ tap.test('post route returns success', async t => {
     path: '/foo',
     method: 'POST',
     payload: { foo: 'hello world' }
-  })
-  t.equal(response.statusCode, 200)
-  t.strictSame(response.json(), { foo: 'hello world' })
-})
+  });
+  t.equal(response.statusCode, 200);
+  t.strictSame(response.json(), { foo: 'hello world' });
+});

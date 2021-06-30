@@ -1,15 +1,15 @@
-'use strict'
+'use strict';
 
-const tap = require('tap')
-const getData = require('./index')
+const tap = require('tap');
+const getData = require('./index');
 
 /* tap.jobs = 2 */
 
 // As in lesson 004, this test shows the most basic test of the function
 // without any mocking.
 tap.test('basic test without any mocking', async t => {
-  t.equal('This lesson', getData())
-})
+  t.equal('This lesson', getData());
+});
 
 // Unlike in lesson 004, we don't need to use `mock-require` to mock the
 // transient dependency. Since we are injecting the dependency, we can supply
@@ -19,14 +19,14 @@ tap.test('basic test without any mocking', async t => {
 // tests are affected by parallelization.
 tap.test('mocking the fs module', async t => {
   const fs = {
-    readFileSync (filename) {
-      t.ok(filename.endsWith('Readme.md'))
-      return 'Some mocked data'
+    readFileSync(filename) {
+      t.ok(filename.endsWith('Readme.md'));
+      return 'Some mocked data';
     }
-  }
+  };
 
-  t.equal('Some mocked', getData({ fs }))
-})
+  t.equal('Some mocked', getData({ fs }));
+});
 
 // Action: comment out the first test, lines 10 through 12. Afterward, run
 // `npm test:cov:html` to generate a coverage report. In this coverage report,

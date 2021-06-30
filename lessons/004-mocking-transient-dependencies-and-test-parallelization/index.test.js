@@ -1,8 +1,8 @@
-'use strict'
+'use strict';
 
-const tap = require('tap')
-const mockquire = require('mock-require')
-const getData = require('./index')
+const tap = require('tap');
+const mockquire = require('mock-require');
+const getData = require('./index');
 
 // By default, tap proccesses test suites (`*.test.js` files) in parallel,
 // but it does not process sub-tests in parallel. A sub-test is a `tap.test`
@@ -18,8 +18,8 @@ const getData = require('./index')
 // functions as intended. Which is to say, `fs.readFileSync` will actually
 // read data from the disk.
 tap.test('basic test without any mocking', async t => {
-  t.equal('This lesson', getData())
-})
+  t.equal('This lesson', getData());
+});
 
 // This test shows how to use `mock-require` to mock the transient `fs`
 // dependency. The idea is that we are only concerned with `getData` working
@@ -33,11 +33,11 @@ tap.test('mocking the fs module', async t => {
     // Since we are mocking the module to provide our own `readFileSync` method,
     // we are able to inspect the parameters passed to it and verify that they
     // match what we want them to match.
-    readFileSync (filename) {
-      t.ok(filename.endsWith('Readme.md'))
-      return 'Some mocked data'
+    readFileSync(filename) {
+      t.ok(filename.endsWith('Readme.md'));
+      return 'Some mocked data';
     }
-  })
+  });
 
   // Mocking a dependency can have side effects. To avoid them, we should
   // always clean up after ourselves upon test completion. tap provides us
@@ -49,8 +49,8 @@ tap.test('mocking the fs module', async t => {
     // `mockquire.stop` method to remove the singular mock we added. If we
     // had mocked multiple dependencies, we could use `mockquire.stopAll()`
     // instead.
-    mockquire.stop('fs')
-  })
+    mockquire.stop('fs');
+  });
 
   // Now that we have configured our mocking library to return what we desire
   // for the modules we want mocked, we need to re-require the module we
@@ -60,15 +60,15 @@ tap.test('mocking the fs module', async t => {
   // Experiment: what happens if we do not re-require here? What if we use
   // the regular `require` function again, e.g.
   // `const getData = require('./index')`?
-  const getData = mockquire.reRequire('./index')
-  t.equal('Some mocked', getData())
-})
+  const getData = mockquire.reRequire('./index');
+  t.equal('Some mocked', getData());
+});
 
 // This test shows the side effects that can be introduced through mocking.
 // To see this, remove the `t.teardown` block in the previous test.
 tap.test('test side effects of mocking', async t => {
-  const path = require('path')
-  const fs = require('fs')
-  const data = fs.readFileSync(path.join(__dirname, 'Readme.md'))
-  t.ok(data.toString().startsWith('This lesson'))
-})
+  const path = require('path');
+  const fs = require('fs');
+  const data = fs.readFileSync(path.join(__dirname, 'Readme.md'));
+  t.ok(data.toString().startsWith('This lesson'));
+});

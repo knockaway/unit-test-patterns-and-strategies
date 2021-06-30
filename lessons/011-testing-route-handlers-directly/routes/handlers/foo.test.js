@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
-const tap = require('tap')
-const handler = require('./foo')
+const tap = require('tap');
+const handler = require('./foo');
 
 // This test shows how a route handler function can be tested independently of
 // any server instance. Given that `request` and `reply` are known objects,
@@ -14,7 +14,7 @@ tap.test('parrots input', async t => {
   // While not technically necessary, we are establishing a plan here to
   // indicate both to `tap` and the reader that this test should have one
   // assertion pass.
-  t.plan(1)
+  t.plan(1);
 
   // Experiment: write another test that submits an empty payload object, `{}`.
   // Should the handler be modified to account for this? Why or why not?
@@ -22,13 +22,13 @@ tap.test('parrots input', async t => {
     body: {
       foo: 'hello world'
     }
-  }
+  };
 
   const reply = {
-    send (payload) {
-      t.strictSame(payload, { foo: 'hello world' })
+    send(payload) {
+      t.strictSame(payload, { foo: 'hello world' });
     }
-  }
+  };
 
-  handler(request, reply)
-})
+  handler(request, reply);
+});
