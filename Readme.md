@@ -1,6 +1,6 @@
 # Unit Test Patterns And Strategies
 
-The puprose of this repository is to provide instruction on some common
+The purpose of this repository is to provide instruction on some common
 unit test patterns and strategies. Within the [lessons](./lessons) directory
 there are several subdirectories. The lessons are primarily written according to
 test patterns and strategies usable with the [`tap`](https://node-tap.org)
