@@ -1,11 +1,11 @@
-'use strict'
+'use strict';
 
 module.exports = {
-  thisThrows () {
-    throw Error('thrown')
+  thisThrows() {
+    throw Error('thrown');
   },
 
-  thisRejects () {
-    return Promise.reject(Error('rejected'))
+  thisRejects() {
+    return Promise.reject(Error('rejected'));
   }
-}
+};

@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
-const tap = require('tap')
-const server = require('./index')
+const tap = require('tap');
+const server = require('./index');
 
 // This test is a direct copy of the code from lesson 010. It is included here
 // to show that routes can still be tested completely via the `.inject` method.
@@ -12,26 +12,26 @@ const server = require('./index')
 // validation, and that the handler functions do what we intend for them to
 // do.
 tap.test('responds with success', async t => {
-  const response = await server.inject({ path: '/', method: 'GET' })
-  t.strictSame(response.json(), { hello: 'world' })
-})
+  const response = await server.inject({ path: '/', method: 'GET' });
+  t.strictSame(response.json(), { hello: 'world' });
+});
 
 tap.test('post route rejects for bad payload', async t => {
   const response = await server.inject({
     path: '/foo',
     method: 'POST',
     payload: { foo: { bar: 'bar' } }
-  })
-  t.equal(response.statusCode, 400)
-  t.match(response.json(), { message: 'body.foo should be string' })
-})
+  });
+  t.equal(response.statusCode, 400);
+  t.match(response.json(), { message: 'body.foo should be string' });
+});
 
 tap.test('post route returns success', async t => {
   const response = await server.inject({
     path: '/foo',
     method: 'POST',
     payload: { foo: 'hello world' }
-  })
-  t.equal(response.statusCode, 200)
-  t.strictSame(response.json(), { foo: 'hello world' })
-})
+  });
+  t.equal(response.statusCode, 200);
+  t.strictSame(response.json(), { foo: 'hello world' });
+});

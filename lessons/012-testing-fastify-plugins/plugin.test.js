@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
-const tap = require('tap')
-const plugin = require('./plugin')
+const tap = require('tap');
+const plugin = require('./plugin');
 
 // As with the handler tests in lesson 011, we can test Fastify plugins
 // by recognizing that plugins receive standardized input objects and making
@@ -16,22 +16,22 @@ tap.test('decorates request object', async t => {
     //
     // Action: add another decoration in the plugin and make this test consider
     // both decorations.
-    decorateRequest (name, value) {
-      t.equal(name, 'foo')
-      t.type(value, Function)
-      t.equal('foo', value())
+    decorateRequest(name, value) {
+      t.equal(name, 'foo');
+      t.type(value, Function);
+      t.equal('foo', value());
     },
 
     // We are not testing the route definition in this test. But we need
     // to account for the method being used by the plugin. So we provide a
     // simple stub function.
-    route () {
-      t.pass()
+    route() {
+      t.pass();
     }
-  }
+  };
 
-  await plugin(server)
-})
+  await plugin(server);
+});
 
 // This test is very similar to the previous test. The difference is that it
 // tests both the route being defined and that the route makes uses of the
@@ -42,14 +42,14 @@ tap.test('decorates request object', async t => {
 // need to be adjusted?
 tap.test('defines a route', async t => {
   const server = {
-    decorateRequest () {
-      t.pass()
+    decorateRequest() {
+      t.pass();
     },
 
-    route (config) {
-      t.equal(config.path, '/')
-      t.equal(config.method, 'GET')
-      t.type(config.handler, Function)
+    route(config) {
+      t.equal(config.path, '/');
+      t.equal(config.method, 'GET');
+      t.type(config.handler, Function);
 
       // This is a rough approximation of what Fastify does internally.
       // We do this here so that we can have access to the route handler
@@ -57,21 +57,21 @@ tap.test('defines a route', async t => {
       //
       // Experiment: inline the handler test here instead of by mutating
       // the `server` object.
-      this.routes = { '/': config.handler }
+      this.routes = { '/': config.handler };
     }
-  }
+  };
 
-  await plugin(server)
+  await plugin(server);
 
   const request = {
-    foo () {
-      return 'mock foo'
+    foo() {
+      return 'mock foo';
     }
-  }
+  };
   const reply = {
-    send (payload) {
-      t.strictSame(payload, { foo: 'mock foo' })
+    send(payload) {
+      t.strictSame(payload, { foo: 'mock foo' });
     }
-  }
-  server.routes['/'](request, reply)
-})
+  };
+  server.routes['/'](request, reply);
+});

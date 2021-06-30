@@ -1,7 +1,7 @@
-'use strict'
+'use strict';
 
-const server = require('fastify')({ logger: false })
+const server = require('fastify')({ logger: false });
 
-server.register(require('./routes'))
+server.register(require('./routes'));
 
-module.exports = server
+module.exports = server;

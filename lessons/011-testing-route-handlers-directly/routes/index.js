@@ -1,9 +1,9 @@
-'use strict'
+'use strict';
 
 // This is a standard Fastify plugin that merely registers a couple of routes.
 // For more information about Fastify plugins, see
 // https://www.fastify.io/docs/latest/Plugins/ and a subsequent lesson.
-module.exports = async function routes (server) {
+module.exports = async function routes(server) {
   server.route({
     path: '/',
     method: 'GET',
@@ -11,7 +11,7 @@ module.exports = async function routes (server) {
     // Instead of defining the route handler inline with the route configuration
     // we import an independent testable function.
     handler: require('./handlers/root')
-  })
+  });
 
   server.route({
     path: '/foo',
@@ -25,5 +25,5 @@ module.exports = async function routes (server) {
       }
     },
     handler: require('./handlers/foo')
-  })
-}
+  });
+};
