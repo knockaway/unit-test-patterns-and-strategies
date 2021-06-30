@@ -1,0 +1,41 @@
+name: unit
+
+on:
+  push:
+    paths-ignore:
+      - '*.md'
+  pull_request:
+    paths-ignore:
+      - '*.md'
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        node-version: [14, 16]
+        os: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v2.3.4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install
+        run: |
+          npm install --ignore-scripts
+
+      - name: Run tests
+        run: |
+          npm run test:cov
